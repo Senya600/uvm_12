@@ -1,0 +1,20 @@
+[
+  { "op": "load_const", "B": 0, "C": 200 },
+  { "op": "load_const", "B": 1, "C": 300 },
+
+  { "op": "load_const", "B": 10, "C": 1 },
+  { "op": "load_const", "B": 11, "C": 2 },
+  { "op": "load_const", "B": 12, "C": 3 },
+
+  { "op": "write_value", "B": 10, "C": 200 },
+  { "op": "write_value", "B": 11, "C": 201 },
+  { "op": "write_value", "B": 12, "C": 202 },
+
+  { "op": "read_value", "B": 0, "C": 20, "D": 0 },
+  { "op": "read_value", "B": 0, "C": 21, "D": 1 },
+  { "op": "read_value", "B": 0, "C": 22, "D": 2 },
+
+  { "op": "write_value", "B": 20, "C": 300 },
+  { "op": "write_value", "B": 21, "C": 301 },
+  { "op": "write_value", "B": 22, "C": 302 }
+]

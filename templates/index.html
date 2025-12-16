@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>UVM — Variant 12 Web Simulator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f0f0f0;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header .subtitle {
+            margin-top: 6px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            background: #0d1117;
+            color: #e6edf3;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #000;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        input {
+            width: 100px;
+            padding: 6px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        pre {
+            background: #0d1117;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th, td {
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding: 4px 6px;
+            text-align: right;
+        }
+
+        th {
+            text-align: center;
+            background: rgba(17,153,142,0.3);
+        }
+
+        .error {
+            color: #ff6b6b;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>UVM — Variant 12</h1>
+    <div class="subtitle">
+        JSON Assembler & Interpreter · pow · double addressing
+    </div>
+</header>
+
+<main>
+    <section>
+        <h2>Program (JSON)</h2>
+        <textarea id="program">{{ demo_program }}</textarea>
+
+        <div style="margin-top:10px;">
+            Dump range:
+            <input id="range" value="95-135">
+            <br>
+            <button onclick="run()">Assemble & Run</button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Bytecode (hex)</h2>
+        <pre id="bytecode"></pre>
+
+        <h2>IR</h2>
+        <pre id="ir"></pre>
+    </section>
+
+    <section>
+        <h2>Memory dump</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>addr</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody id="dump"></tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Status</h2>
+        <pre id="status">Ready</pre>
+    </section>
+</main>
+
+<script>
+function run() {
+    const programText = document.getElementById("program").value;
+    const range = document.getElementById("range").value;
+
+    let program;
+    try {
+        program = JSON.parse(programText);
+    } catch (e) {
+        document.getElementById("status").innerText = "JSON error:\n" + e;
+        return;
+    }
+
+    fetch("/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ program, range })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (!data.ok) {
+            document.getElementById("status").innerText = "Error:\n" + data.error;
+            return;
+        }
+
+        document.getElementById("bytecode").innerText = data.bytecode;
+        document.getElementById("ir").innerText = data.ir.join("\n");
+
+        const tbody = document.getElementById("dump");
+        tbody.innerHTML = "";
+        for (const row of data.dump) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${row.addr}</td><td>${row.value}</td>`;
+            tbody.appendChild(tr);
+        }
+
+        document.getElementById("status").innerText =
+            `Executed ${data.ir.length} instructions`;
+    });
+}
+</script>
+
+</body>
+</html>

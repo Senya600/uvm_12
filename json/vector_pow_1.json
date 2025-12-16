@@ -1,0 +1,77 @@
+[
+  { "op": "load_const", "B": 10, "C": 1 },
+  { "op": "load_const", "B": 11, "C": 2 },
+  { "op": "load_const", "B": 12, "C": 3 },
+  { "op": "load_const", "B": 13, "C": 4 },
+  { "op": "load_const", "B": 14, "C": 5 },
+  { "op": "load_const", "B": 15, "C": 6 },
+  { "op": "load_const", "B": 16, "C": 7 },
+  { "op": "load_const", "B": 17, "C": 8 },
+  { "op": "load_const", "B": 18, "C": 9 },
+
+  { "op": "load_const", "B": 20, "C": 2 },
+  { "op": "load_const", "B": 21, "C": 2 },
+  { "op": "load_const", "B": 22, "C": 2 },
+  { "op": "load_const", "B": 23, "C": 2 },
+  { "op": "load_const", "B": 24, "C": 2 },
+  { "op": "load_const", "B": 25, "C": 2 },
+  { "op": "load_const", "B": 26, "C": 2 },
+  { "op": "load_const", "B": 27, "C": 2 },
+  { "op": "load_const", "B": 28, "C": 2 },
+
+  { "op": "write_value", "B": 10, "C": 100 },
+  { "op": "write_value", "B": 11, "C": 101 },
+  { "op": "write_value", "B": 12, "C": 102 },
+  { "op": "write_value", "B": 13, "C": 103 },
+  { "op": "write_value", "B": 14, "C": 104 },
+  { "op": "write_value", "B": 15, "C": 105 },
+  { "op": "write_value", "B": 16, "C": 106 },
+  { "op": "write_value", "B": 17, "C": 107 },
+  { "op": "write_value", "B": 18, "C": 108 },
+
+  { "op": "write_value", "B": 20, "C": 110 },
+  { "op": "write_value", "B": 21, "C": 111 },
+  { "op": "write_value", "B": 22, "C": 112 },
+  { "op": "write_value", "B": 23, "C": 113 },
+  { "op": "write_value", "B": 24, "C": 114 },
+  { "op": "write_value", "B": 25, "C": 115 },
+  { "op": "write_value", "B": 26, "C": 116 },
+  { "op": "write_value", "B": 27, "C": 117 },
+  { "op": "write_value", "B": 28, "C": 118 },
+
+  { "op": "load_const", "B": 2, "C": 110 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 120, "D": 100 },
+
+  { "op": "load_const", "B": 2, "C": 111 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 121, "D": 101 },
+
+  { "op": "load_const", "B": 2, "C": 112 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 122, "D": 102 },
+
+  { "op": "load_const", "B": 2, "C": 113 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 123, "D": 103 },
+
+  { "op": "load_const", "B": 2, "C": 114 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 124, "D": 104 },
+
+  { "op": "load_const", "B": 2, "C": 115 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 125, "D": 105 },
+
+  { "op": "load_const", "B": 2, "C": 116 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 126, "D": 106 },
+
+  { "op": "load_const", "B": 2, "C": 117 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 127, "D": 107 },
+
+  { "op": "load_const", "B": 2, "C": 118 },
+  { "op": "write_value", "B": 2, "C": 1 },
+  { "op": "pow", "B": 1, "C": 108, "D": 108 }
+]

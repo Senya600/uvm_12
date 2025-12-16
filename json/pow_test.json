@@ -1,0 +1,11 @@
+[
+  { "op": "load_const", "B": 10, "C": 2 },
+  { "op": "load_const", "B": 11, "C": 3 },
+
+  { "op": "load_const", "B": 0, "C": 11 },
+
+  { "op": "write_value", "B": 10, "C": 10 },
+  { "op": "write_value", "B": 11, "C": 11 },
+
+  { "op": "pow", "B": 0, "C": 20, "D": 10 }
+]
